@@ -1,0 +1,28 @@
+# DuckDB
+data/*.duckdb
+data/*.duckdb.wal
+
+# ML model
+ml/model.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/.user.yml
+
+# Environment
+.env
+
+# Node
+dashboard/node_modules/
+dashboard/dist/
+
+# OS
+.DS_Store
+Thumbs.db
