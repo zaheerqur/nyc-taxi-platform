@@ -29,9 +29,34 @@ services:
       timeout: 10s
       retries: 5
 
+  airflow:
+    build: ./airflow
+    container_name: airflow
+    command: standalone
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__WEBSERVER__SECRET_KEY: "nyc-taxi-secret-key"
+      DUCKDB_PATH: /opt/airflow/data/nyc_taxi.duckdb
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./dbt_project:/opt/airflow/dbt_project
+      - ./data:/opt/airflow/data
+      - ./ml:/opt/airflow/ml
+      - airflow-home:/opt/airflow
+    ports:
+      - "8080:8080"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - pipeline-network
+
 networks:
   pipeline-network:
     driver: bridge
 
 volumes:
   kafka-data:
+  airflow-home:

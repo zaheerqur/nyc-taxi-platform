@@ -3,5 +3,5 @@ nyc_taxi:
   outputs:
     dev:
       type: duckdb
-      path: data/nyc_taxi.duckdb
+      path: "{{ env_var('DUCKDB_PATH', 'data/nyc_taxi.duckdb') }}"
       schema: staging
