@@ -20,3 +20,4 @@ WHERE fare_amount > 0
   AND trip_distance > 0
   AND pickup_datetime IS NOT NULL
   AND pu_location_id IS NOT NULL
+  AND YEAR(pickup_datetime) BETWEEN 2019 AND 2025
