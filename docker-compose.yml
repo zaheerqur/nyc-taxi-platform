@@ -60,12 +60,28 @@ services:
     container_name: api
     environment:
       MODEL_PATH: /opt/app/ml/model.pkl
+      DUCKDB_PATH: /opt/app/data/nyc_taxi.duckdb
       PYTHONPATH: /opt/app
     volumes:
+      - ./api:/opt/app/api
       - ./ml:/opt/app/ml
-      - ./api/main.py:/opt/app/api/main.py
+      - ./data:/opt/app/data
     ports:
       - "8000:8000"
+    command: python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - pipeline-network
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+    container_name: dashboard
+    volumes:
+      - ./dashboard/src:/app/src
+      - ./dashboard/index.html:/app/index.html
+    ports:
+      - "3000:3000"
     networks:
       - pipeline-network
 
