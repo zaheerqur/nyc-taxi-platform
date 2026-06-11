@@ -53,6 +53,22 @@ services:
     networks:
       - pipeline-network
 
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: api
+    environment:
+      MODEL_PATH: /opt/app/ml/model.pkl
+      PYTHONPATH: /opt/app
+    volumes:
+      - ./ml:/opt/app/ml
+      - ./api/main.py:/opt/app/api/main.py
+    ports:
+      - "8000:8000"
+    networks:
+      - pipeline-network
+
 networks:
   pipeline-network:
     driver: bridge
