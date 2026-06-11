@@ -1,0 +1,86 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt and DuckDB adapter
+        run: pip install dbt-duckdb==1.7.4
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Create test DuckDB with seed data
+        run: |
+          pip install duckdb
+          python - <<'EOF'
+          import duckdb
+
+          con = duckdb.connect("data/nyc_taxi.duckdb")
+          con.execute("CREATE SCHEMA IF NOT EXISTS raw")
+          con.execute("""
+            CREATE TABLE IF NOT EXISTS raw.taxi_trips_raw (
+              vendor_id INTEGER,
+              tpep_pickup_datetime TIMESTAMP,
+              tpep_dropoff_datetime TIMESTAMP,
+              passenger_count INTEGER,
+              trip_distance DOUBLE,
+              pu_location_id INTEGER,
+              do_location_id INTEGER,
+              fare_amount DOUBLE,
+              tip_amount DOUBLE,
+              total_amount DOUBLE,
+              payment_type INTEGER
+            )
+          """)
+          con.execute("""
+            INSERT INTO raw.taxi_trips_raw VALUES
+              (1, '2024-01-15 08:00:00', '2024-01-15 08:20:00', 2, 3.5, 161, 236, 15.50, 3.0, 19.80, 1),
+              (2, '2024-01-15 09:00:00', '2024-01-15 09:30:00', 1, 5.2, 236, 161, 22.00, 4.5, 27.80, 1),
+              (1, '2024-01-15 17:00:00', '2024-01-15 17:45:00', 3, 8.1, 132, 186, 35.00, 7.0, 44.00, 1),
+              (2, '2024-01-16 12:00:00', '2024-01-16 12:25:00', 1, 2.3, 186, 236, 12.00, 2.0, 15.30, 2),
+              (1, '2024-01-16 18:30:00', '2024-01-16 19:00:00', 2, 4.7, 161, 132, 20.00, 3.5, 25.00, 1)
+          """)
+          con.close()
+          print("Test database created with 5 seed rows")
+          EOF
+
+      - name: dbt compile
+        working-directory: dbt_project
+        env:
+          DUCKDB_PATH: ../data/nyc_taxi.duckdb
+        run: dbt compile --profiles-dir . --project-dir .
+
+      - name: dbt run staging
+        working-directory: dbt_project
+        env:
+          DUCKDB_PATH: ../data/nyc_taxi.duckdb
+        run: dbt run --select staging --profiles-dir . --project-dir .
+
+      - name: dbt test
+        working-directory: dbt_project
+        env:
+          DUCKDB_PATH: ../data/nyc_taxi.duckdb
+        run: dbt test --select staging --profiles-dir . --project-dir .
+
+      - name: Lint Python files
+        run: |
+          flake8 producer/ consumer/ api/ ml/ \
+            --max-line-length=120 \
+            --extend-ignore=E203,W503,E221,E241 \
+            --exclude=__pycache__
