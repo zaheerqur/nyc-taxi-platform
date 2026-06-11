@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: Cleaned and filtered taxi trips from raw ingestion layer
+    columns:
+      - name: pickup_datetime
+        description: Trip pickup timestamp
+        tests:
+          - not_null
+      - name: fare_amount
+        description: Base fare charged for the trip
+        tests:
+          - not_null
+      - name: pu_location_id
+        description: TLC taxi zone ID for pickup location
+        tests:
+          - not_null
+      - name: payment_type
+        description: Payment method code (1=Credit, 2=Cash, 3=No charge, 4=Dispute, 5=Unknown, 6=Voided)
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]

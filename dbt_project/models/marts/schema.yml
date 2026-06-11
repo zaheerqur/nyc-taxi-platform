@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fare_summary
+    description: Daily fare revenue aggregated by pickup borough
+    columns:
+      - name: trip_date
+        tests:
+          - not_null
+      - name: total_trips
+        tests:
+          - not_null
+
+  - name: hourly_demand
+    description: Trip volume by hour of day, day of week, and pickup zone
+    columns:
+      - name: hour_of_day
+        tests:
+          - not_null
+      - name: trip_count
+        tests:
+          - not_null
