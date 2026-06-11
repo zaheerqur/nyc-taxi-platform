@@ -1,7 +1,6 @@
 import os
 import duckdb
 import joblib
-import pandas as pd
 from datetime import datetime
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.model_selection import train_test_split
