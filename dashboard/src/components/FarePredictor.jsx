@@ -19,7 +19,7 @@ const LABELS = {
   passenger_count: 'Passengers',
 }
 
-export default function FarePredictor() {
+export default function FarePredictor({ onPredict }) {
   const [form, setForm] = useState(DEFAULTS)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -34,6 +34,7 @@ export default function FarePredictor() {
     try {
       const data = await postPredict(form)
       setResult(data)
+      if (onPredict) onPredict()
     } catch {
       setResult(null)
     } finally {

@@ -78,6 +78,7 @@ header span { color: #718096; font-size: 13px; }
 
 .nav-btn:hover { border-color: #63b3ed; color: #e2e8f0; }
 .nav-btn.active { border-color: #63b3ed; color: #63b3ed; }
+.nav-btn.nav-icon { padding: 6px 10px; display: flex; align-items: center; }
 
 /* About */
 .about { max-width: 860px; margin: 0 auto; }
