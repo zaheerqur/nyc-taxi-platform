@@ -4,10 +4,12 @@ import TripVolumeChart from './components/TripVolumeChart'
 import RevenueBoroughChart from './components/RevenueBoroughChart'
 import DemandHeatmap from './components/DemandHeatmap'
 import FarePredictor from './components/FarePredictor'
+import About from './components/About'
 
 const REFRESH_MS = 60_000
 
 export default function App() {
+  const [page, setPage] = useState('dashboard')
   const [tripVolume, setTripVolume] = useState([])
   const [revenue, setRevenue] = useState([])
   const [demand, setDemand] = useState([])
@@ -39,9 +41,16 @@ export default function App() {
     <div className="app">
       <header>
         <h1>NYC Taxi Analytics</h1>
-        <span>Jan - Mar 2024 &nbsp;·&nbsp; refreshes every 60s</span>
+        <span>Jan - Mar 2024</span>
+        <nav className="nav">
+          <button className={`nav-btn${page === 'dashboard' ? ' active' : ''}`} onClick={() => setPage('dashboard')}>Dashboard</button>
+          <button className={`nav-btn${page === 'about' ? ' active' : ''}`} onClick={() => setPage('about')}>About</button>
+        </nav>
       </header>
 
+      {page === 'about' && <About />}
+
+      {page === 'dashboard' && <>
       <div className="stats-bar">
         <div className="stat-card">
           <div className="label">Total Trips</div>
@@ -79,6 +88,7 @@ export default function App() {
           <FarePredictor />
         </div>
       </div>
+      </>}
     </div>
   )
 }

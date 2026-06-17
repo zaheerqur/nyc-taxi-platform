@@ -14,6 +14,7 @@ export default function RevenueBoroughChart({ data }) {
         <Tooltip
           contentStyle={{ background: '#1e2130', border: '1px solid #2d3748', borderRadius: 6 }}
           labelStyle={{ color: '#a0aec0' }}
+          itemStyle={{ color: '#e2e8f0' }}
           formatter={v => [`$${v.toLocaleString()}`, 'Revenue']}
         />
         <Bar dataKey="revenue" radius={[4, 4, 0, 0]}>

@@ -62,6 +62,111 @@ header span { color: #718096; font-size: 13px; }
 
 .loading { color: #718096; font-size: 13px; padding: 40px 0; text-align: center; }
 
+/* Nav */
+.nav { margin-left: auto; display: flex; gap: 8px; }
+
+.nav-btn {
+  background: none;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+  color: #718096;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 6px 14px;
+  transition: all 0.15s;
+}
+
+.nav-btn:hover { border-color: #63b3ed; color: #e2e8f0; }
+.nav-btn.active { border-color: #63b3ed; color: #63b3ed; }
+
+/* About */
+.about { max-width: 860px; margin: 0 auto; }
+
+.about-section { margin-bottom: 40px; }
+
+.about-section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a0aec0;
+  margin-bottom: 16px;
+}
+
+.about-section p { color: #cbd5e0; line-height: 1.8; font-size: 15px; }
+
+.about-section a { color: #63b3ed; text-decoration: none; }
+.about-section a:hover { text-decoration: underline; }
+
+.pipeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pipeline-step {
+  background: #1e2130;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.step-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #63b3ed;
+  margin-bottom: 8px;
+}
+
+.step-body { color: #a0aec0; font-size: 14px; line-height: 1.7; }
+
+.pipeline-arrow { color: #63b3ed; font-size: 24px; padding-top: 20px; }
+
+.decisions { display: flex; flex-direction: column; gap: 20px; }
+
+.decision {
+  background: #1e2130;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.decision-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+
+.decision p { color: #a0aec0; font-size: 15px; line-height: 1.8; }
+
+.stack-grid { display: flex; flex-direction: column; gap: 8px; }
+
+.stack-row {
+  display: flex;
+  gap: 16px;
+  padding: 10px 14px;
+  background: #1e2130;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+}
+
+.stack-layer {
+  color: #a0aec0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.stack-tools { color: #e2e8f0; font-size: 15px; }
+
 /* Heatmap */
 .heatmap-wrap { overflow-x: auto; }
 
