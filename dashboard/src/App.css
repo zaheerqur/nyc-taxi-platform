@@ -267,3 +267,48 @@ header span { color: #718096; font-size: 13px; }
   color: #718096;
   margin-top: 4px;
 }
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+/* Tablet (≤900px): single-column chart grid, 2×2 stats */
+@media (max-width: 900px) {
+  .stats-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile (≤600px): compact everything */
+@media (max-width: 600px) {
+  .app { padding: 12px; }
+
+  header {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  header h1 { font-size: 17px; }
+
+  .nav { width: 100%; }
+
+  .nav-btn { padding: 5px 10px; font-size: 12px; }
+
+  .stat-card { padding: 12px 14px; }
+  .stat-card .value { font-size: 20px; }
+
+  .predictor-form { grid-template-columns: 1fr; }
+  .predict-btn { grid-column: span 1; }
+  .fare-result { grid-column: span 1; }
+
+  .pipeline { flex-direction: column; gap: 12px; }
+  .pipeline-arrow { display: none; }
+  .pipeline-step { min-width: unset; }
+
+  .stack-row { flex-wrap: wrap; gap: 4px; }
+  .stack-layer { width: auto; min-width: 90px; }
+}
