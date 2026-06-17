@@ -1,4 +1,4 @@
-const BASE = ''  // proxied via vite to localhost:8000
+const BASE = import.meta.env.VITE_API_URL || ''
 
 export async function fetchTripVolume() {
   const r = await fetch(`${BASE}/stats/trip-volume`)

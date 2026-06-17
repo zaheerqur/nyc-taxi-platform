@@ -2,9 +2,6 @@
 data/*.duckdb
 data/*.duckdb.wal
 
-# ML model
-ml/model.pkl
-
 # Python
 __pycache__/
 *.py[cod]
