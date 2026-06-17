@@ -1,6 +1,6 @@
 # NYC Taxi Analytics Platform
 
-A data engineering portfolio project built on 9.5 million NYC Yellow Taxi trips (Jan-Mar 2024). Demonstrates event-driven ingestion, a layered warehouse, schema-tested transformations, scheduled orchestration, and an ML-powered prediction API — all running in a single Docker Compose stack.
+A data engineering portfolio project built on 9.5 million NYC Yellow Taxi trips (Jan-Mar 2024). Demonstrates event-driven ingestion, a layered warehouse, schema-tested transformations, scheduled orchestration, and an ML-powered prediction API. The entire stack runs locally with a single Docker Compose command.
 
 [![dbt CI](https://github.com/zaheerqur/nyc-taxi-platform/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/zaheerqur/nyc-taxi-platform/actions/workflows/dbt_ci.yml)
 

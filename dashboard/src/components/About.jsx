@@ -30,7 +30,7 @@ export default function About() {
           <div className="pipeline-arrow">→</div>
           <div className="pipeline-step">
             <div className="step-title">Serve</div>
-            <div className="step-body">FastAPI exposes dashboard endpoints and an ML fare predictor (R² = 0.91) trained on trip features.</div>
+            <div className="step-body">FastAPI exposes dashboard endpoints and an ML fare predictor (R² = 0.91) built with a HistGradientBoostingRegressor trained on trip features.</div>
           </div>
         </div>
       </div>
@@ -55,8 +55,8 @@ export default function About() {
             <p>A cron job could run dbt on a schedule, but it gives you no visibility. Airflow shows every run, retries on failure, and makes dependencies between tasks explicit. The DAG is essentially live documentation of the pipeline.</p>
           </div>
           <div className="decision">
-            <div className="decision-title">Why Random Forest for fare prediction?</div>
-            <p>Fare is non-linear. A 5-mile trip at 3am costs differently than the same distance at 6pm rush hour in a different borough. Random Forest handles those interactions naturally without needing manually engineered features for every combination. It achieved R² = 0.91 on the holdout set.</p>
+            <div className="decision-title">Why HistGradientBoostingRegressor for fare prediction?</div>
+            <p>Fare is non-linear. A 5-mile trip at 3am costs differently than the same distance at 6pm rush hour in a different borough. HistGradientBoostingRegressor handles those interactions naturally without needing manually engineered features for every combination. It achieved R² = 0.91 on the holdout set.</p>
           </div>
         </div>
       </div>
