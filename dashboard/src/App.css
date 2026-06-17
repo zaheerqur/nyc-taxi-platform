@@ -124,7 +124,7 @@ header span { color: #718096; font-size: 13px; }
   margin-bottom: 8px;
 }
 
-.step-body { color: #a0aec0; font-size: 14px; line-height: 1.7; }
+.step-body { color: #a0aec0; font-size: 14px; line-height: 1.7; overflow-wrap: break-word; }
 
 .pipeline-arrow { color: #63b3ed; font-size: 24px; padding-top: 20px; }
 
