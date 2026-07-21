@@ -19,13 +19,22 @@ const LABELS = {
   passenger_count: 'Passengers',
 }
 
+const RANGES = {
+  hour_of_day: { min: 0, max: 23 },
+  day_of_week: { min: 0, max: 6 },
+}
+
 export default function FarePredictor({ onPredict }) {
   const [form, setForm] = useState(DEFAULTS)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleChange = e => {
-    setForm(f => ({ ...f, [e.target.name]: Number(e.target.value) }))
+    const { name, value } = e.target
+    let num = Number(value)
+    const range = RANGES[name]
+    if (range) num = Math.min(range.max, Math.max(range.min, num))
+    setForm(f => ({ ...f, [name]: num }))
   }
 
   const handleSubmit = async e => {
@@ -51,6 +60,8 @@ export default function FarePredictor({ onPredict }) {
             name={key}
             type="number"
             step="any"
+            min={RANGES[key]?.min}
+            max={RANGES[key]?.max}
             value={form[key]}
             onChange={handleChange}
           />

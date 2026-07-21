@@ -69,7 +69,7 @@ export default function About() {
             ['Storage',        'DuckDB'],
             ['Transformation', 'dbt'],
             ['Orchestration',  'Apache Airflow'],
-            ['ML',             'scikit-learn (Random Forest)'],
+            ['ML',             'scikit-learn (HistGradientBoostingRegressor)'],
             ['API',            'FastAPI, Python'],
             ['Frontend',       'React, Recharts, Vite'],
             ['Infrastructure', 'Docker Compose'],
